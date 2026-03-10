@@ -1,0 +1,24 @@
+{
+  "logging": {
+    "retention_days": 365,
+    "contains_personal_data": true,
+    "pseudonymized": true,
+    "monitoring_enabled": true,
+    "incident_logging": true
+  },
+  "encryption": {
+    "data_at_rest": {
+      "enabled": true,
+      "algorithm": "AES-256"
+    }
+  },
+  "network_security": {
+    "segmented": true
+  },
+  "vendor_management": {
+    "risk_monitoring_enabled": true
+  },
+  "data_residency": {
+    "transfer_mechanism": "SCC"
+  }
+}
