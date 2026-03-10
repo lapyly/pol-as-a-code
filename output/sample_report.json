@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-03-10T13:13:00.303172+00:00",
+  "evaluation_count": 8,
+  "framework_compliance": {
+    "PCI DSS": 100.0,
+    "ISO 27001": 100.0,
+    "SOC2": 100.0,
+    "GDPR": 50.0
+  },
+  "results": [
+    {
+      "policy_id": "pci_log_retention_10_7",
+      "framework": "PCI DSS",
+      "control_id": "10.7",
+      "component": "logging",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "evidence": "Log retention configured to 365 days.",
+      "details": {
+        "retention_days": 365,
+        "runtime_ms": 0.027
+      }
+    },
+    {
+      "policy_id": "pci_network_segmentation_1_2",
+      "framework": "PCI DSS",
+      "control_id": "1.2",
+      "component": "network_security",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "evidence": "Network segmentation is enabled.",
+      "details": {
+        "runtime_ms": 0.011
+      }
+    },
+    {
+      "policy_id": "iso_logging_monitoring_a12_4_1",
+      "framework": "ISO 27001",
+      "control_id": "A.12.4.1",
+      "component": "logging",
+      "severity": "MEDIUM",
+      "status": "COMPLIANT",
+      "evidence": "Centralized logging monitoring is enabled.",
+      "details": {
+        "runtime_ms": 0.009
+      }
+    },
+    {
+      "policy_id": "iso_crypto_controls_a10_1",
+      "framework": "ISO 27001",
+      "control_id": "A.10.1",
+      "component": "encryption",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "evidence": "Encryption enabled=True, algorithm=AES-256.",
+      "details": {
+        "runtime_ms": 0.014
+      }
+    },
+    {
+      "policy_id": "soc2_incident_logging_cc7_2",
+      "framework": "SOC2",
+      "control_id": "CC7.2",
+      "component": "logging",
+      "severity": "MEDIUM",
+      "status": "COMPLIANT",
+      "evidence": "Incident logging is configured.",
+      "details": {
+        "runtime_ms": 0.008
+      }
+    },
+    {
+      "policy_id": "soc2_vendor_risk_cc9_2",
+      "framework": "SOC2",
+      "control_id": "CC9.2",
+      "component": "vendor_management",
+      "severity": "MEDIUM",
+      "status": "COMPLIANT",
+      "evidence": "Vendor risk monitoring is active.",
+      "details": {
+        "runtime_ms": 0.007
+      }
+    },
+    {
+      "policy_id": "gdpr_data_minimization_5_1_c",
+      "framework": "GDPR",
+      "control_id": "5(1)(c)",
+      "component": "logging",
+      "severity": "HIGH",
+      "status": "CONFLICT",
+      "evidence": "Personal data retained in logs beyond 90 days without pseudonymization; possible conflict with minimization principle.",
+      "details": {
+        "retention_days": 365,
+        "pseudonymized": false,
+        "runtime_ms": 0.085
+      }
+    },
+    {
+      "policy_id": "gdpr_cross_border_44",
+      "framework": "GDPR",
+      "control_id": "44",
+      "component": "data_residency",
+      "severity": "MEDIUM",
+      "status": "COMPLIANT",
+      "evidence": "Configured transfer mechanism: SCC",
+      "details": {
+        "runtime_ms": 0.05
+      }
+    }
+  ],
+  "conflicts": [
+    {
+      "conflict_id": "C-001",
+      "component": "logging",
+      "frameworks": [
+        "PCI DSS",
+        "GDPR"
+      ],
+      "policy_ids": [
+        "pci_log_retention_10_7",
+        "gdpr_data_minimization_5_1_c"
+      ],
+      "conflict_type": "soft_conflict",
+      "severity": "MEDIUM",
+      "summary": "Soft conflict on logging: one framework flagged risk/ambiguity while another requirement is satisfied.",
+      "recommendation": "Retain logs for PCI scope, pseudonymize personal data after 90 days, and enforce strict access controls."
+    },
+    {
+      "conflict_id": "C-002",
+      "component": "logging",
+      "frameworks": [
+        "ISO 27001",
+        "GDPR"
+      ],
+      "policy_ids": [
+        "iso_logging_monitoring_a12_4_1",
+        "gdpr_data_minimization_5_1_c"
+      ],
+      "conflict_type": "soft_conflict",
+      "severity": "MEDIUM",
+      "summary": "Soft conflict on logging: one framework flagged risk/ambiguity while another requirement is satisfied.",
+      "recommendation": "Retain logs for PCI scope, pseudonymize personal data after 90 days, and enforce strict access controls."
+    },
+    {
+      "conflict_id": "C-003",
+      "component": "logging",
+      "frameworks": [
+        "SOC2",
+        "GDPR"
+      ],
+      "policy_ids": [
+        "soc2_incident_logging_cc7_2",
+        "gdpr_data_minimization_5_1_c"
+      ],
+      "conflict_type": "soft_conflict",
+      "severity": "MEDIUM",
+      "summary": "Soft conflict on logging: one framework flagged risk/ambiguity while another requirement is satisfied.",
+      "recommendation": "Retain logs for PCI scope, pseudonymize personal data after 90 days, and enforce strict access controls."
+    }
+  ]
+}
